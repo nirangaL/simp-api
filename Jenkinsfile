@@ -29,5 +29,11 @@ pipeline {
       }
     }
 
+    stage('Run project') {
+      steps {
+        sh 'docker run -d -p 3000:3000 --name simp-api nirangawh/simp-api:latest'
+      }
+    }
+
   }
 }
