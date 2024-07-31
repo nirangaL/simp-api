@@ -8,8 +8,19 @@ pipeline {
     }
 
     stage('log files') {
-      steps {
-        sh 'ls -la'
+      parallel {
+        stage('log files') {
+          steps {
+            sh 'ls -la'
+          }
+        }
+
+        stage('Run Project') {
+          steps {
+            sh 'docker run -p 3000:3000 -t simp-app .'
+          }
+        }
+
       }
     }
 
